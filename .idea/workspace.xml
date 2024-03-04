@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15f0c3e6-2a6e-48ec-aae7-3dc5ce373914" name="Changes" comment="Init commit">
+    <list default="true" id="15f0c3e6-2a6e-48ec-aae7-3dc5ce373914" name="Changes" comment="Correct output but TL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -49,7 +49,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1709565464834</updated>
-      <workItem from="1709565465882" duration="11164000" />
+      <workItem from="1709565465882" duration="12129000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <option name="closed" value="true" />
@@ -59,7 +59,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709574004194</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Correct output but TL">
+      <option name="closed" value="true" />
+      <created>1709577656451</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1709577656451</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -67,7 +75,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init commit" />
+    <MESSAGE value="Correct output but TL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct output but TL" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

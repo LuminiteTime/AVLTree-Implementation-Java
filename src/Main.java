@@ -7,46 +7,34 @@ import java.util.Scanner;
 
 
 public class Main {
-    private static ArrayList<ArrayList<Node<Integer>>> res = new ArrayList<>();
+    static private ArrayList<Node<Integer>> allNodes = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         AVLTree<Integer> avlTree = new AVLTree<>();
-        int mx = -10000;
         int[] nums = new int[n];
         for (int i = 0; i < n; i++) {
             int value = scanner.nextInt();
-            mx = Math.max(mx, value);
             nums[i] = value;
-            avlTree.insert(value);
+            avlTree.insert(value, i);
         }
-        for (int i = 0; i < mx + 1; i++) {
-            res.add(null);
+
+        for (int i = 0; i < n; i++) {
+            allNodes.add(null);
         }
 
         System.out.println(n);
 
         printResult(avlTree.getRoot());
         for (int i = 0; i < n; i++) {
-            ArrayList<Node<Integer>> nodes = res.get(nums[i]);
-            StringBuilder line = new StringBuilder();
-            line.append(nums[i]).append(" ");
-            int ind1 = nodes.get(0) == null ? -1 : findIndexByElement(nums, nodes.get(0).getValue(), n) + 1;
-            int ind2 = nodes.get(1) == null ? -1 : findIndexByElement(nums, nodes.get(1).getValue(), n) + 1;
-            line.append(ind1).append(" ");
-            line.append(ind2);
-            System.out.println(line);
+            Node<Integer> nodeNow = allNodes.get(i);
+            int ind1 = nodeNow.getLeft() == null ? -1 : nodeNow.getLeft().getIndex() + 1;
+            int ind2 = nodeNow.getRight() == null ? -1 : nodeNow.getRight().getIndex() + 1;
+            System.out.println(nodeNow.getValue() + " " + ind1 + " " + ind2);
         }
 
-        System.out.println(findIndexByElement(nums, avlTree.getRoot().getValue(), n) + 1);
-    }
-
-    private static int findIndexByElement(int[] nums, int a, int n) {
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == a) return i;
-        }
-        return -1;
+        System.out.println(avlTree.getRoot().getIndex() + 1);
     }
 
     private static void printResult(Node<Integer> root) {
@@ -55,10 +43,7 @@ public class Main {
 
     private static void printOneNode(Node<Integer> node) {
         if (node != null) {
-            ArrayList<Node<Integer>> nodes = new ArrayList<>();
-            nodes.add(node.getLeft());
-            nodes.add(node.getRight());
-            res.set(node.getValue(), nodes);
+            allNodes.set(node.getIndex(), node);
             printOneNode(node.getLeft());
             printOneNode(node.getRight());
         }
@@ -70,12 +55,14 @@ class Node<T> {
     private int height;
     private Node<T> left;
     private Node<T> right;
+    private int index;
 
-    public Node(T value) {
+    public Node(T value, int index) {
         this.value = value;
         this.height = 1;
         this.left = null;
         this.right = null;
+        this.index = index;
     }
 
     public T getValue() {
@@ -104,6 +91,10 @@ class Node<T> {
 
     public void setRight(Node<T> right) {
         this.right = right;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }
 
@@ -142,17 +133,17 @@ class AVLTree<T extends Comparable<T>> {
         return y;
     }
 
-    public void insert(T value) {
-        root = insert(root, value);
+    public void insert(T value, int index) {
+        root = insert(root, value, index);
     }
 
-    private Node<T> insert(Node<T> node, T value) {
+    private Node<T> insert(Node<T> node, T value, int index) {
         if (node == null)
-            return new Node<>(value);
+            return new Node<>(value, index);
         if (value.compareTo(node.getValue()) < 0)
-            node.setLeft(insert(node.getLeft(), value));
+            node.setLeft(insert(node.getLeft(), value, index));
         else if (value.compareTo(node.getValue()) > 0)
-            node.setRight(insert(node.getRight(), value));
+            node.setRight(insert(node.getRight(), value, index));
 
         node.setHeight(Math.max(notNullHeight(node.getLeft()), notNullHeight(node.getRight())) + 1);
 
